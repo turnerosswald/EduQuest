@@ -16,7 +16,7 @@ export default function MathTypeHome({
           </Typography>
         </Box>
       </Grid>
-      <Grid size={12} align="center">
+      <Grid size={12} sx={{ textAlign: "center" }}>
         <Box sx={{ backgroundColor: 'white' }}>
           {' '}
           {/* Add OnClick Event */}
@@ -32,7 +32,7 @@ export default function MathTypeHome({
           </Button>{' '}
         </Box>{' '}
       </Grid>
-      <Grid size={12} align="center">
+      <Grid size={12} sx={{ textAlign: "center" }}>
         <Box sx={{ backgroundColor: 'white' }}>
           <Button
             variant="contained"
@@ -44,7 +44,7 @@ export default function MathTypeHome({
           </Button>
         </Box>{' '}
       </Grid>
-      <Grid size={12} align="center">
+      <Grid size={12} sx={{ textAlign: "center" }}>
         <Box sx={{ backgroundColor: 'white' }}>
           <Button
             variant="contained"

@@ -6,7 +6,7 @@ import TeamMember from '@/components/TeamMember';
 
 
 interface TeamToggleProps{
-    teamMembers: { name: string; image: string }[];
+    teamMembers: { name: string; image: string; title: string }[];
 }
 
 const TeamBanner: React.FC<TeamToggleProps> = ({ teamMembers }) => {
@@ -59,11 +59,7 @@ const TeamBanner: React.FC<TeamToggleProps> = ({ teamMembers }) => {
             <Grid2 container spacing={4} justifyContent="center" sx={{ maxWidth: '800px', marginTop: 2 }}>
                 {teamMembers.map((member, index) => (
                 <Grid2
-                    item
-                    xs={6}
-                    sm={4}
-                    md={3}
-                    lg={2}
+                    size={{ xs: 6, sm: 4, md: 3, lg: 2 }}
                     key={index}>
                     <TeamMember name={member.name} image={member.image} title={member.title}/>
                 

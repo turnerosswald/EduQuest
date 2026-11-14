@@ -27,7 +27,7 @@ const Statistics: React.FC<StatisticsProps> = ({ stats }) => {
         
             <Grid2 container spacing = {2} justifyContent = "center">
                 {stats.map((stat, index) => (
-                    <Grid2 item xs={12} sm={3} md={4} key={index}>
+                    <Grid2 size={{ xs: 12, sm: 3, md: 4 }} key={index}>
                     <Box
                         sx={{
                             backgroundColor: '#f5f5f5',

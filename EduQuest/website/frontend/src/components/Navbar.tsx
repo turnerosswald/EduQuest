@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 // import Link from 'next/link';
 const Navbar = () => {
   const pathname = usePathname();
-  const isActive = (path) => pathname === path;
+  const isActive = (path: string): boolean => pathname === path;
 
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: 'white' }}>
