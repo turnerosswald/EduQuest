@@ -1,7 +1,11 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import Grid from '@mui/system/Grid';
-export default function MathTypeHome({ game_handler }) {
+export default function MathTypeHome({
+  game_handler,
+}: {
+  game_handler: (mode: string) => void;
+}) {
   return (
     <>
       <Grid size={12}>
