@@ -1,0 +1,115 @@
+/* Preserve WordQuest's original raised buttons and unboxed home screen.
+   Keep the responsive, scoped layout and corrected background from the visual fix. */
+.wordquest {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  color: #182b38;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #579ac7;
+}
+.wordquest *, .wordquest *::before, .wordquest *::after { box-sizing: border-box; }
+.wordquest__backdrop {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(8, 32, 65, .32), rgba(8, 42, 61, .14)), url('/images/background_home.webp') center / cover no-repeat;
+  pointer-events: none;
+}
+.wordquest__content { position: relative; z-index: 1; width: 100%; min-height: 100svh; }
+/* Original WordQuest gray default buttons; level buttons retain their original
+   per-button raised gray gradient, purple text, and hover shadows in HomePage.js. */
+.wordquest button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: normal;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #000;
+  background-color: #f0f0f0;
+  transition: all .2s ease-in-out;
+}
+.wordquest button:hover { background-color: #d9d9d9; }
+.wordquest button:focus-visible, .wordquest input:focus-visible { outline: 3px solid #4f46e5; outline-offset: 2px; }
+.wordquest__home {
+  min-height: 100svh;
+  padding: clamp(22px, 4vw, 48px) 14px;
+  text-align: center;
+  color: white;
+}
+.wordquest__levels { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.wordquest__home h4 { margin: 0 0 20px; line-height: 1.2; }
+.wordquest__home > p { margin: 0 0 22px; }
+.wordquest__game { width: min(1200px,100%); margin: auto; padding: 20px clamp(12px,3vw,30px) 50px; }
+.wordquest__back { margin: 10px; }
+/* Preserve the crossword and clue panel's responsive layout, without the new
+   large white rounded 'card' surrounding the entire crossword. */
+.wordquest__board-page { background: transparent; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+.wordquest__game-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(205px,270px); gap: 20px; align-items: start; }
+.wordquest__board-scroll { min-width: 0; max-width: 100%; overflow-x: auto; padding: 3px 0 12px; }
+.wordquest .crossword-board { display: grid; gap: 0; margin: 10px auto; }
+.wordquest .cell { text-align: center; font-size: 1em; padding: 0; margin: 0; box-sizing: border-box; border: 1px solid #ccc; outline: 0; }
+.wordquest .cell:focus { border: 2px solid #4f46e5; }
+.wordquest .hints-container { position: static; width: 100%; min-width: 0; max-height: min(70svh,690px); overflow: auto; background: transparent; padding: 0; border: 0; border-radius: 0; }
+.wordquest .hints-container > div { width: 100%; max-width: 100%; }
+.wordquest .hints-box { max-height: none; overflow: visible; }
+.wordquest .feedback { color: green; font-weight: bold; }
+@media (max-width: 920px) {
+  .wordquest__game-layout { grid-template-columns: minmax(0,1fr); }
+  .wordquest .hints-container { max-height: none; }
+}
+@media (max-width: 520px) {
+  .wordquest__home { padding: 24px 10px; }
+  .wordquest__levels button { flex: 1 1 40%; max-width: 190px; }
+}
+
+/* Pixel-framed cards, not soft/rounded marketing UI. Original gray game buttons stay untouched. */
+.wordquest__home-card {
+  width: min(780px,100%); margin: 20px auto; padding: clamp(20px,4vw,42px) clamp(14px,3vw,36px);
+  border: 5px solid #2c3059; border-radius: 0;
+  background: rgba(254,245,214,.94);
+  box-shadow: 9px 9px 0 #2c3059, inset 0 0 0 4px #fff7de;
+}
+.wordquest__home-card h4 { margin-top: 0; }
+.wordquest .hints-container > div {
+  border: 3px solid #2c3059 !important; border-radius: 0 !important;
+  box-shadow: 5px 5px 0 #2c3059 !important; opacity: 1 !important;
+  background: #fffdf2 !important; margin-bottom: 14px !important;
+}
+.wordquest__home-card [style*="rgba(0, 0, 0, 0.7)"] { border: 3px solid #2c3059; border-radius: 0 !important; box-shadow: 4px 4px 0 #2c3059; }
+@media (max-width: 520px) { .wordquest__home-card { margin-top: 0; box-shadow: 5px 5px 0 #2c3059; } }
+
+/* Layout for the earlier interconnected-crossword board integrated into this release. */
+.wordquest .wordquest-play-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(205px, 270px);
+  align-items: start; gap: 20px; width: 100%;
+}
+.wordquest .wordquest-grid-scroll { min-width: 0; max-width: 100%; overflow-x: auto; padding: 4px 0 15px; }
+.wordquest .wordquest-grid-scroll .crossword-board { margin: 10px auto; }
+@media (max-width: 920px) {
+  .wordquest .wordquest-play-layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* WordQuest input repair: selected words and solved intersections stay readable. */
+.wordquest .wordquest__scoreline { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding:8px 12px; }
+.wordquest .wordquest__scoreline h2 { font-size:24px; font-weight:700; color:#121923; text-shadow:2px 2px 3px #ffc16c; }
+.wordquest .wordquest__scoreline h3 { font-size:18px; font-weight:700; color:#172b39; padding:5px 10px; background:#e7f2fd; border:2px solid #27385d; }
+.wordquest .wordquest__feedback, .wordquest .wordquest__completion { margin:5px auto 12px; text-align:center; font-size:16px; font-weight:700; background:#fffceb; border:2px solid #27385d; padding:8px; max-width:680px; }
+.wordquest .wordquest__completion { color:#146a42; }
+.wordquest .crossword-board .cell { background:rgba(219,234,254,.85); color:#141a2a; font-weight:600; border:1px solid #a7bcd5; }
+.wordquest .crossword-board .cell:disabled { background:rgba(230,240,251,.72); border:1px solid #c2cad3; cursor:default; }
+.wordquest .crossword-board .cell.cell--active { background:#e8dbff; border:2px solid #8554db; }
+.wordquest .crossword-board .cell.cell--solved { background:#91d9c8; border:2px solid #2e75a0; color:#122332; cursor:default; }
+.wordquest .wordquest__clue-number { position:absolute; top:1px; left:2px; font-size:10px; line-height:1; color:#111; pointer-events:none; z-index:1; }
+.wordquest .hint-instructions { padding:12px; font-size:13px; text-align:center; }
+.wordquest .hint-instructions p { margin:4px; }
+.wordquest .hints-box { padding:10px; }
+.wordquest .wordquest__hint-row { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:4px; padding:5px 2px; border-bottom:1px solid #ccd4dd; }
+.wordquest .wordquest__hint-row--active { background:#e3d9fa; outline:2px solid #7e50b1; }
+.wordquest .wordquest__hint-row--solved { background:#d5f4e6; }
+.wordquest .wordquest__hint-select { flex:1 1 115px; min-width:100px; text-align:left; padding:4px !important; margin:0 !important; background:transparent !important; border:0 !important; color:#121a30 !important; font-size:13px !important; }
+.wordquest .wordquest__hint-select small { display:block; font-size:11px; color:#444; }
+.wordquest .wordquest__hint-actions { display:flex; align-items:center; gap:4px; }
+.wordquest .wordquest__hint-actions button { margin:0 !important; padding:4px 6px !important; font-size:12px !important; border:2px solid #27385d !important; border-radius:0 !important; }

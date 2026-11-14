@@ -1,0 +1,151 @@
+/* Spelling Bee v2: scoped selectors never modify other EduQuest games. */
+.spelling-v2 {
+  min-height: 100svh;
+  padding: clamp(18px, 3vw, 44px);
+  display: grid;
+  grid-template-columns: minmax(0, 820px) clamp(125px, 16vw, 230px);
+  justify-content: center;
+  align-items: center;
+  gap: clamp(12px, 2vw, 30px);
+  isolation: isolate;
+  background-color: #192846;
+  background-image: linear-gradient(115deg, rgba(17, 26, 50, .67), rgba(20, 46, 60, .32)), url('/assets/images/og level.png');
+  background-position: center, center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  color: #fff;
+  font: 16px/1.5 Arial, Helvetica, sans-serif;
+}
+.spelling-v2--medium { background-image: linear-gradient(120deg, rgba(16, 28, 52, .80), rgba(20, 47, 60, .64)), url('/assets/images/noir level.png'); }
+.spelling-v2--hard { background-image: linear-gradient(120deg, rgba(16, 28, 52, .80), rgba(20, 47, 60, .64)), url('/assets/images/biohazard level.png'); }
+.spelling-v2--final { background-image: linear-gradient(120deg, rgba(16, 28, 52, .80), rgba(20, 47, 60, .64)), url('/assets/images/sunset level.png'); }
+.spelling-v2 *, .spelling-v2 *::before, .spelling-v2 *::after { box-sizing: border-box; }
+/* The original Pygame/React game had no large dark rounded card. */
+.spelling-v2__panel {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(22px, 4vw, 42px);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.spelling-v2__header { display:flex; gap:16px; justify-content:space-between; align-items:start; flex-wrap:wrap; }
+.spelling-v2 h1 { font-size: clamp(26px, 4.5vw, 42px); font-weight: 800; margin: 4px 0 20px; color:#fff; }
+.spelling-v2 h2 { font-size: 26px; font-weight: 750; margin: 12px 0; }
+.spelling-v2__eyebrow { color: #9fe5e1; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; font-size: 12px; }
+/* Original green buttons (MainMenu.css / SpellingGame.css), scoped to this game. */
+.spelling-v2 button {
+  position: static;
+  inset: auto;
+  margin: 0;
+  width: auto;
+  height: auto;
+  min-height: 44px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #4CAF50;
+  font: 700 17px/1.25 Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background-color .3s ease;
+}
+.spelling-v2 button:hover { background-color: darkgreen; }
+.spelling-v2 button:focus-visible, .spelling-v2 input:focus-visible { outline: 3px solid #f7d260; outline-offset: 3px; }
+.spelling-v2 button:disabled { opacity: .55; cursor: not-allowed; }
+/* Help and level buttons used the same green style in the original. */
+.spelling-v2 .spelling-v2__quiet { background-color: #4CAF50; color: white; border: none; }
+.spelling-v2 .spelling-v2__quiet:hover { background-color: darkgreen; }
+.spelling-v2__intro, .spelling-v2__finish { text-align: center; padding: 12px 0; }
+/* The original square image has >50% transparent padding; use trimmed sprite. */
+.spelling-v2__character {
+  display: block;
+  width: 100%;
+  max-height: min(66svh, 390px);
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  align-self: end;
+  margin-bottom: clamp(12px, 5svh, 60px);
+  image-rendering: pixelated;
+  filter: drop-shadow(0 12px 9px rgba(0, 0, 0, .4));
+  pointer-events: none;
+}
+.spelling-v2__levels { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 24px; }
+.spelling-v2__stats { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin: 18px 0 28px; padding: 8px 0; border-radius: 0; background: transparent; }
+.spelling-v2__stats span { white-space:nowrap; }
+.spelling-v2__prompt { font-size:clamp(22px, 3.5vw, 30px); font-weight:700; margin: 18px 0 24px; text-align:center; }
+.spelling-v2__hear { display:block; margin:0 auto 20px !important; }
+.spelling-v2__hint { text-align:center; color:#ffe1a1; padding: 12px; font-weight:700; }
+.spelling-v2__form { display:flex; flex-direction:column; gap:12px; max-width:520px; margin:24px auto; }
+.spelling-v2__form label { font-weight:700; }
+.spelling-v2 input { position:static; width:100%; height:auto; min-height:50px; padding: 12px 16px;
+  background:#fff; color:#122138; font:600 18px Arial, Helvetica, sans-serif; border:2px solid #bccbd6; border-radius:4px; text-align:left; }
+.spelling-v2__feedback { text-align:center; padding:18px; font-size:18px; }
+.spelling-v2__feedback button { margin:12px auto; }
+.spelling-v2__notice { text-align:center; color:#c9f2ee; }
+.spelling-v2__help { background:rgba(255,255,255,.10); border-radius:12px; padding:16px; margin:8px 0 20px; }
+.spelling-v2__error { padding: 12px; border:1px solid #ffc3c3; border-radius:10px; background:#692e38; color:#fff; margin-top:18px; }
+.spelling-v2__final-score { font-size: 24px; font-weight:800; }
+.spelling-v2__finish button { margin:6px; }
+
+/* On phones Moski becomes a smaller, readable illustration below the controls. */
+@media (max-width: 760px) {
+  .spelling-v2 {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    padding: 18px 14px;
+    gap: 0;
+    min-height: 100svh;
+    background-position: center, 58% center;
+  }
+  .spelling-v2__panel { padding: 22px 18px; }
+  .spelling-v2__character {
+    justify-self: end;
+    width: clamp(85px, 24vw, 145px);
+    max-height: 160px;
+    margin: -3px 3vw 0 0;
+  }
+}
+@media (max-width: 380px) {
+  .spelling-v2__header { display: block; }
+  .spelling-v2__header button { margin-bottom: 14px; }
+  .spelling-v2__stats { padding: 10px; gap: 8px; }
+}
+
+/* Deliberately pixel-style game panels; retain the ORIGINAL green buttons and Moski positioning. */
+.spelling-v2__panel {
+  background: rgba(19,36,58,.94);
+  border: 5px solid #f7e2ab;
+  border-radius: 0;
+  box-shadow: 9px 9px 0 #0e213c, inset 0 0 0 4px #2a4a67;
+}
+.spelling-v2__stats span {
+  display: inline-block; padding: 7px 10px; background: #263e59;
+  border: 2px solid #a9cfc4; border-radius: 0; box-shadow: 3px 3px 0 #0b1a33;
+}
+.spelling-v2__help, .spelling-v2__feedback, .spelling-v2__error {
+  border: 3px solid #f7e2ab; border-radius: 0;
+  box-shadow: 4px 4px 0 #0b1a33; background: #29425c;
+}
+.spelling-v2__hint { border: 2px solid #f7e2ab; background: #29425c; }
+.spelling-v2__form input { border-radius: 0; border: 3px solid #a9cfc4; }
+@media (max-width: 760px) { .spelling-v2__panel { box-shadow: 5px 5px 0 #0e213c; } }
+
+.spelling-v2__connection {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px;
+  margin: 17px 0 8px; padding: 10px; border: 2px solid #a9cfc4; background: #263e59;
+  font-size: 14px; text-align: center;
+}
+.spelling-v2__signal { display: inline-block; width: 10px; height: 10px; border: 2px solid #091c35; background: #f1bd61; }
+.spelling-v2__signal--online { background: #78e5a0; }
+.spelling-v2__signal--offline { background: #ff867e; }
+.spelling-v2__connection button { min-height: 33px; padding: 5px 10px; font-size: 14px; }
+
+/* Original answer sounds + keyboard instructions: compact controls, no new cards. */
+.spelling-v2__header-actions { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; align-items:center; }
+.spelling-v2__header-actions .spelling-v2__quiet { white-space:nowrap; }
